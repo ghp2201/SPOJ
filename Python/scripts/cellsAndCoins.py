@@ -1,5 +1,7 @@
 input_value = float(input())
 
+""" List structure: [value, quantity] """
+
 money_notes = [
     [100.00, 0],
     [50.00, 0],
@@ -18,29 +20,29 @@ coins = [
     [0.01, 0]
 ]
 
-def quantity_calc(data_list):
+
+def calc_quantity(data_list):
     global input_value
 
     for data in data_list:
-        data[1] = input_value // data[0]
         if data[0] < 0.05:
             data[1] = input_value / data[0]
+        else:
+            data[1] = input_value // data[0]
+
         input_value = input_value % data[0]
 
 
 def print_quantity(text, data_list):
     for data in data_list:
-        print('{quantity:0.0f} {text} de R$ {value:0.2f}'.format(
-            quantity = data[1],
-            text = text,
-            value = data[0]
-        ))
+        print(f"{data[1]:0.0f} {text} de R$ {data[0]:0.2f}")
 
 if input_value > 0:
-    quantity_calc(money_notes)
+    calc_quantity(money_notes)
 
     if input_value > 0 and input_value < 2:
-        quantity_calc(coins)
+        calc_quantity(coins)
+
 
 print('NOTAS:')
 print_quantity('nota(s)', money_notes)
