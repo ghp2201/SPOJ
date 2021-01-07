@@ -1,0 +1,8 @@
+version: '3.6'
+
+services:
+  php:
+    image: php:7.4-cli
+    volumes:
+      - ./scripts/:/scripts/
+    tty: true
